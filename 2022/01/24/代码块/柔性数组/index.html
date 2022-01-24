@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="zh—CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>吹晓 | 吹晓</title><meta name="author" content="吹晓"><meta name="copyright" content="吹晓"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="柔性数组什么是柔性数组？柔性数组(flexible array)：在结构体中，最后一个成员允许是未知大小的数组，这就叫做柔性数组成员。 类似定义方式如下 12345struct S&amp;#123;	int n;	int arr[];&amp;#125;;  如果不清楚柔性数组的相关概念，那么我们可能会将以上的结构体的大小错误的认为是8个字节。但其实只有4个字节，这也是柔性数组的特点之一。可以验证一下: 1pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吹晓">
+<meta property="og:url" content="https://areanblg.github.io/2022/01/24/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="吹晓">
+<meta property="og:description" content="柔性数组什么是柔性数组？柔性数组(flexible array)：在结构体中，最后一个成员允许是未知大小的数组，这就叫做柔性数组成员。 类似定义方式如下 12345struct S&amp;#123;	int n;	int arr[];&amp;#125;;  如果不清楚柔性数组的相关概念，那么我们可能会将以上的结构体的大小错误的认为是8个字节。但其实只有4个字节，这也是柔性数组的特点之一。可以验证一下: 1pr">
+<meta property="og:locale">
+<meta property="og:image" content="http://simpledesktops.com/download/?desktop=6513">
+<meta property="article:published_time" content="2022-01-24T15:04:41.233Z">
+<meta property="article:modified_time" content="2022-01-24T15:06:16.077Z">
+<meta property="article:author" content="吹晓">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://simpledesktops.com/download/?desktop=6513"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://areanblg.github.io/2022/01/24/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '吹晓',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-24 23:06:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://simpledesktops.com/download/?desktop=6513')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">吹晓</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">No title</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2022-01-24T15:04:41.233Z" title="创建于 2022-01-24 23:04:41">2022-01-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-24T15:06:16.077Z" title="更新于 2022-01-24 23:06:16">2022-01-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="柔性数组"><a href="#柔性数组" class="headerlink" title="柔性数组"></a>柔性数组</h1><h2 id="什么是柔性数组？"><a href="#什么是柔性数组？" class="headerlink" title="什么是柔性数组？"></a>什么是柔性数组？</h2><p>柔性数组(flexible array)：在结构体中，最后一个成员允许是未知大小的数组，这就叫做柔性数组成员。</p>
+<p>类似定义方式如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">int</span> arr[];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果不清楚柔性数组的相关概念，那么我们可能会将以上的结构体的大小错误的认为是8个字节。但其实只有4个字节，这也是柔性数组的特点之一。可以验证一下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, <span class="keyword">sizeof</span>(struct S));<span class="comment">//输出结构体大小</span></span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator\source\repos\test_a\Debug\test_a.exe</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="柔性数组的特点"><a href="#柔性数组的特点" class="headerlink" title="柔性数组的特点"></a>柔性数组的特点</h2><p>1.结构中的柔性数组成员前面必须至少有一个其他成员</p>
+<p>2.包含柔性数组成员的结构需要进行内存的动态分配，并且分配的内存应该大于结构的大</p>
+<p>小，以适应柔性数组的预期大小。</p>
+<p>根据特点二，如果我们想要使用柔性数组中的元素，那么就需要给结构体开辟内存空间，内存空间的大小减去其他成员的大小就等于柔性数组的大小。</p>
+<h2 id="柔性数组的使用"><a href="#柔性数组的使用" class="headerlink" title="柔性数组的使用"></a>柔性数组的使用</h2><p>柔性数组有两种使用方式</p>
+<h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">int</span> arr[];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//为结构体开辟空间</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">S</span>* <span class="title">ps</span> =</span> (struct S*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct S) + <span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">//获得10个int型的内存空间</span></span><br><span class="line">	<span class="comment">//判断是否开辟成功</span></span><br><span class="line">	<span class="keyword">if</span> (ps == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strerror(errno));<span class="comment">//输出错误原因</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//正常使用空间</span></span><br><span class="line">		<span class="comment">//给结构体成员分别赋值</span></span><br><span class="line">		ps-&gt;n = <span class="number">100</span>;</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">			ps-&gt;arr[i] = i;</span><br><span class="line">		<span class="comment">//输出结构体成员</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ps-&gt;n);</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, ps-&gt;arr[i]);</span><br><span class="line">		<span class="comment">//释放ps所指向的内存空间</span></span><br><span class="line">		<span class="built_in">free</span>(ps);</span><br><span class="line">		ps = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator\source\repos\test_a\Debug\test_a.exe</span><br><span class="line"><span class="number">100</span></span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+<p>以上是柔性数组的第一种使用方式，是以 为结构体开辟空间的方式，从而间接的控制柔性数组的大小。</p>
+<p>第二种使用方式 - 使结构体中的最后一个成员为指针类型，指向一块内存空间。这块内存空间需要我们去进行开辟。所以我们只需要根据开辟指针所指向的内存空间的大小，来控制柔性数组本身的大小即可。</p>
+<h3 id="二"><a href="#二" class="headerlink" title="二"></a>二</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">int</span> *arr;<span class="comment">//定义一个指针，用于指向一块内存空间</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//为结构体开辟空间</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">S</span>* <span class="title">ps</span> =</span> (struct S*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct S));</span><br><span class="line">	ps-&gt;arr = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">//强转为arr的指针类型</span></span><br><span class="line">	<span class="comment">//判断是否开辟成功</span></span><br><span class="line">	<span class="keyword">if</span> (ps-&gt;arr == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, strerror(errno));<span class="comment">//输出错误原因</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//正常使用空间</span></span><br><span class="line">		<span class="comment">//给结构体成员分别赋值</span></span><br><span class="line">		ps-&gt;n = <span class="number">100</span>;</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">			ps-&gt;arr[i] = i;</span><br><span class="line">		<span class="comment">//输出结构体成员</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ps-&gt;n);</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, ps-&gt;arr[i]);</span><br><span class="line">		<span class="comment">//释放arr所指向的内存空间</span></span><br><span class="line">		<span class="built_in">free</span>(ps-&gt;arr);</span><br><span class="line">		ps-&gt;arr = <span class="literal">NULL</span>;</span><br><span class="line">		<span class="comment">//释放ps所指向的内存空间</span></span><br><span class="line">		<span class="built_in">free</span>(ps-&gt;arr);</span><br><span class="line">		ps = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator\source\repos\test_a\Debug\test_a.exe</span><br><span class="line"><span class="number">100</span></span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+<p>上述两种使用方式可以完成同样的功能，但是第一种方式有两个好处：</p>
+<p>一：方便内存释放</p>
+<p>如果我们的代码是在一个给别人用的函数中，你在里面做了二次内存分配，并把整个结构体返回给</p>
+<p>用户。用户调用free可以释放结构体，但是用户并不知道这个结构体内的成员也需要free，所以你</p>
+<p>不能指望用户来发现这个事。所以，如果我们把结构体的内存以及其成员要的内存一次性分配好</p>
+<p>了，并返回给用户一个结构体指针，用户做一次free就可以把所有的内存也给释放掉。</p>
+<p>二：连续的内存可以提高访问速度，也有益于减少内存的一些碎片。（其实，我个人觉得也没多高了，反正</p>
+<p>你跑不了要用做偏移量的加法来寻址）</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实柔性数组就是结构体中包含了一个数组，这个数组大小是未指定的。我们一般用动态内存分配相关的函数来给结构体开辟大小，从而间接的给数组分配空间的一种方式。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="http://simpledesktops.com/download/?desktop=6513" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/01/19/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E7%9A%84%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%A3%80%E9%AA%8C/"><img class="next-cover" src="http://simpledesktops.com/download/?desktop=6475" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">旋转字符的方法以及检验</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">吹晓</div><div class="author-info__description">我热爱痛苦</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Areanblg/Areanblg.github.io"><i class="fab fa-github"></i><span>关注</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://Message/?Uin=911909896&amp;amp;websiteName=q-zone.qq.com&amp;amp;Menu=yes" target="_blank" title="qq"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">不定期上传关于学习C、php、mysql、js、html、css、数据结构和算法的总结与心得</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">柔性数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是柔性数组？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">柔性数组的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">柔性数组的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C"><span class="toc-number">1.3.2.</span> <span class="toc-text">二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/24/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84/" title="No title"><img src="http://simpledesktops.com/download/?desktop=6513" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2022/01/24/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%9F%94%E6%80%A7%E6%95%B0%E7%BB%84/" title="No title">No title</a><time datetime="2022-01-24T15:04:41.233Z" title="创建于 2022-01-24 23:04:41">2022-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/19/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E7%9A%84%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%A3%80%E9%AA%8C/" title="旋转字符的方法以及检验"><img src="http://simpledesktops.com/download/?desktop=6475" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="旋转字符的方法以及检验"/></a><div class="content"><a class="title" href="/2022/01/19/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E7%9A%84%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%A3%80%E9%AA%8C/" title="旋转字符的方法以及检验">旋转字符的方法以及检验</a><time datetime="2022-01-19T10:44:00.000Z" title="创建于 2022-01-19 18:44:00">2022-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/13/%E4%BB%A3%E7%A0%81%E5%9D%97/qsort()%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" title="qsort()函数详解"><img src="http://simpledesktops.com/download/?desktop=6418" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="qsort()函数详解"/></a><div class="content"><a class="title" href="/2022/01/13/%E4%BB%A3%E7%A0%81%E5%9D%97/qsort()%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" title="qsort()函数详解">qsort()函数详解</a><time datetime="2022-01-13T07:14:00.000Z" title="创建于 2022-01-13 15:14:00">2022-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/11/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E4%B8%8E%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%E8%AF%A6%E8%A7%A3/" title="数组指针与指针数组详解"><img src="http://simpledesktops.com/download/?desktop=6513" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数组指针与指针数组详解"/></a><div class="content"><a class="title" href="/2022/01/11/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E4%B8%8E%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%E8%AF%A6%E8%A7%A3/" title="数组指针与指针数组详解">数组指针与指针数组详解</a><time datetime="2022-01-11T05:59:00.000Z" title="创建于 2022-01-11 13:59:00">2022-01-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/05/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0strcpy%E5%87%BD%E6%95%B0/" title="模拟实现strcpy函数"><img src="http://simpledesktops.com/download/?desktop=6418" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="模拟实现strcpy函数"/></a><div class="content"><a class="title" href="/2022/01/05/%E4%BB%A3%E7%A0%81%E5%9D%97/%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0strcpy%E5%87%BD%E6%95%B0/" title="模拟实现strcpy函数">模拟实现strcpy函数</a><time datetime="2022-01-05T11:08:00.000Z" title="创建于 2022-01-05 19:08:00">2022-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('http://simpledesktops.com/download/?desktop=6513')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 吹晓</div><div class="footer_custom_text">终点是多远</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="1 Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
